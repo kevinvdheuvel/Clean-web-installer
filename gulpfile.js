@@ -26,9 +26,9 @@ gulp.task('sass', function() {
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
     return gulp.src('js/*.js')
-        .pipe(concat('all.js'))
+        .pipe(concat('combined.js'))
         .pipe(gulp.dest('dist'))
-        .pipe(rename('all.min.js'))
+        .pipe(rename('main.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
@@ -36,7 +36,7 @@ gulp.task('scripts', function() {
 //Minify CSS
 gulp.task('minify-css', function() {
   gulp.src('css/*.css')
-    .pipe(minifyCSS({keepBreaks:true}))
+    .pipe(minifyCSS({keepBreaks:false}))
     .pipe(rename('main.min.css'))
     .pipe(gulp.dest('./dist/'))
 });
@@ -49,4 +49,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'minify-css', 'watch']);
+gulp.task('default', ['watch', 'lint', 'sass', 'scripts', 'minify-css']);
